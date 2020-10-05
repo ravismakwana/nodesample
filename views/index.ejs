@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <section class="grid container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1><%= title %></h1>
+          <form class="form-inline mt-2" action="/search" method="POST">
+            <label class="sr-only" for="inlineFormInputName2">Name</label>
+            <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="filterName" placeholder="Search by name">
+            <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+            <input type="email" class="form-control mb-2 mr-sm-2" id="inlineFormInputGroupUsername2" name="filterEmail" placeholder="Search by email">
+            <label class="sr-only" for="inlineFormInputGroupSalary">Salary</label>
+            <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputGroupSalary" name="filterSalary" placeholder="Search by salary">
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+          </form>
+          <div class="card">
+            <div class="card-header">
+              Employee Records
+            </div>
+            <div class="card-body">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Salary</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if(records.length > 0 ) { %>
+                  <% records.forEach(function(rows){ %>
+                    <tr>
+                      <td><%= rows.name %></td>
+                      <td><%= rows.email %></td>
+                      <td><%= rows.salary %></td>
+                    </tr>
+                    <% }) } else { %>
+                      <tr>
+                        <td colspan="3">No records found!!</td>
+                      </tr>
+                      <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card mt-3">
+            <div class="card-header">
+              Employee Records
+            </div>
+            <div class="card-body">
+              <form name="empForm" id="empForm" method="POST" action="/">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Name</label>
+                  <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Salary</label>
+                  <input type="text" name="salary" class="form-control" id="exampleInputPassword1">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+          </div>
+      </div>
+    </section>
+  </body>
+</html>
