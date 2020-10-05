@@ -7,7 +7,7 @@ mongoose.connect("mongodb://localhost:27017/employeedb", function(err){
     if(err) throw err;
     console.log("Database Connected");
 });
-
+// This is created mongodb schema
 var empSchema = new mongoose.Schema({
     name: String,
     email: String,
