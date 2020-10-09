@@ -11,7 +11,8 @@ mongoose.connect("mongodb://localhost:27017/employeedb", function(err){
 var empSchema = new mongoose.Schema({
     name: String,
     email: String,
-    salary: Number
+    salary: Number,
+    profile_photo: String
 });
 
 var empModel = mongoose.model("employees", empSchema);
