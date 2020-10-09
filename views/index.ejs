@@ -34,6 +34,7 @@
               <table class="table table-hover">
                 <thead>
                   <tr>
+                    <th>Profile</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Salary</th>
@@ -44,6 +45,11 @@
                   <% if(records.length > 0 ) { %>
                   <% records.forEach(function(rows){ %>
                     <tr>
+                      <% if(rows.profile_photo) { %>
+                      <td><img src="../uploads/<%= rows.profile_photo %>" width="100" /></td>
+                      <% } else { %>
+                        <td><img src="../uploads/blank-user.jpeg" width="100" /></td>
+                      <% } %>
                       <td><%= rows.name %></td>
                       <td><%= rows.email %></td>
                       <td><%= rows.salary %></td>
@@ -84,8 +90,13 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
               <% } else { %>
-              <form name="empForm" id="empForm" method="POST" action="/update">
+              <form name="empForm" id="empForm" method="POST" action="/update" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<%= records._id %>" />
+                <% if(records.profile_photo) { %>
+                <div class="form-group">
+                  <img src="../uploads/<%= records.profile_photo %>" width="200" />
+                </div>
+                <% } %>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Name</label>
                   <input type="text" name="name" class="form-control" id="exampleInputEmail1"  value="<%= records.name %>" aria-describedby="emailHelp"  />
@@ -97,6 +108,10 @@
                 <div class="form-group">
                   <label for="exampleInputPassword1">Salary</label>
                   <input type="text" name="salary" class="form-control" value="<%= records.salary %>" id="exampleInputPassword1">
+                </div>
+                <div class="form-group">
+                  <label for="profile-photo">Profile Photo</label>
+                  <input type="file" name="profile_photo" class="form-control" id="profile-photo">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
